@@ -1,0 +1,55 @@
+//Suppose array is stored in data Memory with starting address0 and total 8 elements are present. Array is unsorted.
+//$1 is for outer loop
+//$2 is for inner loop
+
+main:
+    compi $1, 0 
+    b BubbleSort
+
+BubbleSort:
+        compi $3, -7         // $3 is storing -7
+        add $3, $1
+        bz Sortingover
+        compi $2, 0    	     //Making $2 to zero for inner for loop
+        b BubbleSortUtil
+
+BubbleSortUtil:
+        compi $5, -28        //Storing $5 = -28
+        add $5, $2
+        bz Increament
+        lw $6, 0($2)
+        compi $7,0
+        add $7, $2
+        addi $7, 4           // $7 = j+1
+        lw $8, 0($7)
+        compi $9,11111111111111111111111111111111
+        xor $9, $8
+        addi $9, 1           //$9 = -$8
+        add $9, $6     
+        bns Swap
+        addi $2, 4
+        b BubbleSortUtil
+
+Increament:
+        addi $1,1
+        b  BubbleSort
+
+Swap:
+    sw $6, $7(A)                        
+    sw $8, $2(A)
+    addi $2, 4
+    b BubbleSortUtil
+
+SortingOver:
+        compi $10, 0	
+        lw $20, 0($10)		
+        lw $20, 4($10)
+        lw $20, 8($10)
+        lw $20, 12($10)
+        lw $20, 16($10)
+        lw $20, 20($10)
+        lw $20, 24($10)
+        lw $20, 28($10)
+        //termination of the program
+
+//$20 will store the final result.
